@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Book Sharing </title>
+</head>
+  <body>
+    <%- include('../Partials/navbar') %>
+      <h1>SignUp</h1>
+    <form method="POST" action="/sign-up">
+        <input type="text" name="username" placeholder="username">
+        <input type="password" name="password" placeholder="Password">
+        <input type="number" name="mobile_number" placeholder="mobile_number">
+        <input type="email" name="email" placeholder="email">
+        <input type="submit" name="submit" value="signup">
+    </form>
+    <h3>OR <a href="/login">LogIn</a> </h3>
+  </body>
+</html>
