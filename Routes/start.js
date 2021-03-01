@@ -4,7 +4,6 @@ const express = require('express');
 const auth = require('../Controller/auth.js')
 
 const userModel = require('../Models/users.js');
-const { read } = require('fs');
 
 const router = express.Router();
 
@@ -56,6 +55,9 @@ router.post('/login', (req,res,next) => {
 })
 
 router.get('/sign-up', (req,res,next) => {
+    if(req.session.isLoggedIn){
+        res.redirect('/homepage')
+    }
     res.render('StartPage/signup.ejs')
 })
 
