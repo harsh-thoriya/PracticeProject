@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>Edit Profile</h1>
+        <form method="POST" action="/profile/edit_profile">
+            <input type="text" name="username" placeholder="username" value="<%= user.username %>">
+            <input type="number" name="mobile_number" placeholder="mobile_number" value="<%= user.mobile %>">
+            <input type="email" name="email" placeholder="email" value="<%= user.email %>">
+            <input type="submit" name="submit" value="edit_profile">
+        </form>
+    </body>
+</html>

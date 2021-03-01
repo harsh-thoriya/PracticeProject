@@ -1,18 +1,26 @@
 const path = require('path');
 const bcrypt = require('bcryptjs')
 const express = require('express');
+const auth = require('../Controller/auth.js')
 
-const userModel = require('../Models/users.js')
+const userModel = require('../Models/users.js');
+const { read } = require('fs');
 
 const router = express.Router();
 
 const basePath = path.join(__dirname,'..')
 
 router.get('/', (req,res,next) => {
+    if(req.session.isLoggedIn){
+        res.redirect('/homepage')
+    }
     res.render('StartPage/index.ejs')
 })
 
 router.get('/login', (req,res,next) => {
+    if(req.session.isLoggedIn){
+        res.redirect('/homepage')
+    }
     res.render('StartPage/index.ejs')
 })
 
@@ -33,7 +41,7 @@ router.post('/login', (req,res,next) => {
             return req.session.save(err => {
              // console.log(err);
               
-              res.redirect('/');
+              res.redirect('/homepage');
             });
           }
           res.redirect('/');
@@ -45,30 +53,6 @@ router.post('/login', (req,res,next) => {
     })
     .catch(err => console.log(err));
 
-    // bcrypt.hash(req.body.password,12).then((password)=>{
-      
-    //     userModel.find({username:username, password:password},(err,doc)=>{
-    //         if(err){
-    //             console.log("Invalid credentials")
-    //             res.redirect('/')
-    //         }
-    //         else{
-    //             req.session.isLoggedIn = true
-    //             req.session.user = doc[0]
-    //             console.log("Logged In")
-    //             console.log(doc)
-    //             return req.session.save((err) => {
-    //                 console.log(err);
-    //                 res.redirect('/');
-    //               });
-                
-    //         }
-            
-    //     })
-
-    // })
-    
-    
 })
 
 router.get('/sign-up', (req,res,next) => {
@@ -104,6 +88,13 @@ router.post('/sign-up',(req,res,next) => {
     })
 
     
+})
+
+router.get('/logout',auth,(req,res,next)=>{
+    req.session.destroy((err)=>{
+        console.log(req.session)
+        res.redirect('/')
+    })
 })
 
 module.exports = router;
