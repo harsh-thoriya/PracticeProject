@@ -2,10 +2,11 @@
 <html>
     <body>
         <h1>Edit Profile</h1>
-        <form method="POST" action="/profile/edit_profile">
+        <form method="POST" action="/profile/edit_profile" enctype="multipart/form-data">
             <input type="text" name="username" placeholder="username" value="<%= user.username %>">
             <input type="number" name="mobile_number" placeholder="mobile_number" value="<%= user.mobile %>">
             <input type="email" name="email" placeholder="email" value="<%= user.email %>">
+            <input type="file" name="profile_pic" placeholder="Upload Profile Pic">
             <input type="submit" name="submit" value="Confirm Edit">
         </form>
         <h3><a href="/profile">Cancel Edit</a></h3>

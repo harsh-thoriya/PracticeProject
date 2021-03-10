@@ -9,7 +9,12 @@ const user = new schema({
     },
     password:{
         type: String,
-        required: true
+        required: true,
+        validate(value){
+            if(value.length() < 5){
+                throw new Error('Password must be >=5 characters')
+            }
+        },
     },
     email:{
         type: String,
@@ -17,7 +22,11 @@ const user = new schema({
     },
     mobile:{
         type: Number,
-        required: true
+        required: true,
+        min: 10
+    },
+    profilePictureURL:{
+        type:String
     }
 })
 
