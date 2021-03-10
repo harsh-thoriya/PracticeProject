@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const schema = mongoose.Schema;
 
-const user = new schema({
+const users = new schema({
     username:{
         type: String,
         required: true
@@ -11,7 +11,7 @@ const user = new schema({
         type: String,
         required: true,
         validate(value){
-            if(value.length() < 5){
+            if(value.length < 5){
                 throw new Error('Password must be >=5 characters')
             }
         },
@@ -30,4 +30,4 @@ const user = new schema({
     }
 })
 
-module.exports = mongoose.model('user', user);
+module.exports = mongoose.model('user', users);

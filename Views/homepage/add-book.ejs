@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <form>
-            <input type="text" name="bookName" placeholder="Enter book name"><hr>
+        <form action="/homepage/add-book" method="POST" enctype="multipart/form-data"> 
+            <input type="text" name="bookTitle" placeholder="Enter book name"><hr>
             <textarea name="bookDescription" placeholder="Enter description about this book"> </textarea><hr>
+            <input type="text" name="bookAuthor" placeholder="Enter Author Name if any..."><hr>
+            <input type="file" name="book_pic" placeholder="Upload image of book"><hr>
             <input type="submit" value="Add Book">
         </form>
         <h3><a href="/homepage">Back to homepage</a></h3>

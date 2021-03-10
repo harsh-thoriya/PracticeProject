@@ -7,7 +7,7 @@ const basePath = path.join(__dirname,'..')
 
 const getLogin = (req,res,next) => {
     if(req.session.isLoggedIn){
-        res.redirect('/homepage')
+        return res.redirect('/homepage')
     }
     res.render('StartPage/index.ejs')
 }
@@ -56,7 +56,7 @@ const postSignup = (req,res,next) => {
         let username = req.body.username
         let mobileNumber = req.body.mobile_number
         let email = req.body.email
-        let profilePictureURL = req.file.path.split('\\')[1]
+        let profilePictureURL = req.files.profile_pic[0].path.split('\\')[1]
         
         const user = new userModel({
             username,
